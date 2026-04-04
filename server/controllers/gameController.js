@@ -38,17 +38,14 @@ export const revealAnswer = (req, res) => {
   );
 
   return res.json({
-    gameOver: true,
-    revealed: true,
     answer: currentGame.target.name,
     guesses: currentGame.guesses,
     stats: {
       totalGuesses: currentGame.guesses.length,
       timeTaken,
-      closestDistance:
-        currentGame.guesses.length > 0
-          ? Math.min(...currentGame.guesses.map(g => g.distance))
-          : null,
+      answer: currentGame.target.name,
+      revealed: true,
+      won: false
     },
   });
 };
@@ -113,6 +110,8 @@ export const makeGuess = (req, res) => {
         totalGuesses: currentGame.guesses.length,
         timeTaken,
         closestDistance: result.closestDistance,
+        answer: currentGame.target.name,  
+        won: true                          
       },
     });
   }
