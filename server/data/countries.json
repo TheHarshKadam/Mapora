@@ -1884,12 +1884,6 @@
     ]
   },
   {
-    "name": "Saint Pierre and Miquelon",
-    "lat": 46.83333333,
-    "lng": -56.33333333,
-    "neighbors": []
-  },
-  {
     "name": "Serbia",
     "lat": 44,
     "lng": 21,
@@ -1975,14 +1969,6 @@
     ]
   },
   {
-    "name": "Sint Maarten",
-    "lat": 18.033333,
-    "lng": -63.05,
-    "neighbors": [
-      "Saint Martin"
-    ]
-  },
-  {
     "name": "Seychelles",
     "lat": -4.58333333,
     "lng": 55.66666666,
@@ -1999,12 +1985,6 @@
       "Lebanon",
       "Türkiye"
     ]
-  },
-  {
-    "name": "Turks and Caicos Islands",
-    "lat": 21.75,
-    "lng": -71.58333333,
-    "neighbors": []
   },
   {
     "name": "Chad",
@@ -2098,7 +2078,7 @@
     ]
   },
   {
-    "name": "Türkiye",
+    "name": "Turkey",
     "lat": 39,
     "lng": 35,
     "neighbors": [
@@ -2166,12 +2146,6 @@
     ]
   },
   {
-    "name": "United States Minor Outlying Islands",
-    "lat": 19.3,
-    "lng": 166.633333,
-    "neighbors": []
-  },
-  {
     "name": "Uruguay",
     "lat": -33,
     "lng": -56,
@@ -2210,12 +2184,6 @@
     ]
   },
   {
-    "name": "Saint Vincent and the Grenadines",
-    "lat": 13.25,
-    "lng": -61.2,
-    "neighbors": []
-  },
-  {
     "name": "Venezuela",
     "lat": 8,
     "lng": -66,
@@ -2232,12 +2200,6 @@
     "neighbors": []
   },
   {
-    "name": "United States Virgin Islands",
-    "lat": 18.35,
-    "lng": -64.933333,
-    "neighbors": []
-  },
-  {
     "name": "Vietnam",
     "lat": 16.16666666,
     "lng": 107.83333333,
@@ -2246,18 +2208,6 @@
       "China",
       "Laos"
     ]
-  },
-  {
-    "name": "Vanuatu",
-    "lat": -16,
-    "lng": 167,
-    "neighbors": []
-  },
-  {
-    "name": "Wallis and Futuna",
-    "lat": -13.3,
-    "lng": -176.2,
-    "neighbors": []
   },
   {
     "name": "Samoa",
