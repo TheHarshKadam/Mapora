@@ -1,15 +1,18 @@
-import countries from "../data/countries.json" assert { type: "json" };
 import { evaluateGuess } from "../services/gameEngine.js";
 import { getRandomItem } from "../utils/random.js";
+import fs from "fs";
 
-// Temporary in-memory game
+const countries = JSON.parse(
+  fs.readFileSync(new URL("../data/countries.json", import.meta.url))
+);
+
 let currentGame = {
   target: null,
   guesses: [],
   startTime: null,
 };
 
-// 🎮 Start New Game
+//Start Game
 export const startGame = (req, res) => {
   currentGame = {
     target: getRandomItem(countries),
@@ -20,15 +23,40 @@ export const startGame = (req, res) => {
   return res.json({
     message: "Game started",
     gameStarted: true,
-    guess: [],
+    guesses: [], 
   });
 };
 
-// 🎯 Make Guess
+//Reveal Answer
+export const revealAnswer = (req, res) => {
+  if (!currentGame.target) {
+    return res.status(400).json({ message: "Game not started" });
+  }
+
+  const timeTaken = Math.floor(
+    (Date.now() - currentGame.startTime) / 1000
+  );
+
+  return res.json({
+    gameOver: true,
+    revealed: true,
+    answer: currentGame.target.name,
+    guesses: currentGame.guesses,
+    stats: {
+      totalGuesses: currentGame.guesses.length,
+      timeTaken,
+      closestDistance:
+        currentGame.guesses.length > 0
+          ? Math.min(...currentGame.guesses.map(g => g.distance))
+          : null,
+    },
+  });
+};
+
+//Make Guess
 export const makeGuess = (req, res) => {
   const { countryName } = req.body;
 
-  // ❗ Check if game started
   if (!currentGame.target) {
     return res.status(400).json({ message: "Game not started yet" });
   }
@@ -37,7 +65,6 @@ export const makeGuess = (req, res) => {
     return res.status(400).json({ message: "Country name is required" });
   }
 
-  // 🔍 Find country
   const guess = countries.find(
     (c) => c.name.toLowerCase() === countryName.toLowerCase()
   );
@@ -46,7 +73,6 @@ export const makeGuess = (req, res) => {
     return res.status(400).json({ message: "Invalid country name" });
   }
 
-  // ❗ Duplicate check
   const alreadyGuessed = currentGame.guesses.find(
     (g) => g.name.toLowerCase() === guess.name.toLowerCase()
   );
@@ -57,7 +83,6 @@ export const makeGuess = (req, res) => {
 
   const previousGuess = currentGame.guesses.slice(-1)[0];
 
-  // 🧠 Game logic
   const result = evaluateGuess({
     guess,
     previousGuess,
@@ -65,15 +90,16 @@ export const makeGuess = (req, res) => {
     guesses: currentGame.guesses,
   });
 
-  // 💾 Save guess
+  //SAVE COLOR ALSO
   currentGame.guesses.push({
     name: guess.name,
     lat: guess.lat,
     lng: guess.lng,
     distance: result.distance,
+    color: result.color,
   });
 
-  // 🎉 If correct
+  //Game Over
   if (result.correct) {
     const timeTaken = Math.floor(
       (Date.now() - currentGame.startTime) / 1000
@@ -82,6 +108,7 @@ export const makeGuess = (req, res) => {
     return res.json({
       ...result,
       gameOver: true,
+      guesses: currentGame.guesses,
       stats: {
         totalGuesses: currentGame.guesses.length,
         timeTaken,
@@ -90,9 +117,12 @@ export const makeGuess = (req, res) => {
     });
   }
 
-  // 🔁 Normal response
+  
+
+  //Normal response
   return res.json({
     ...result,
     gameOver: false,
+    guesses: currentGame.guesses,
   });
 };
