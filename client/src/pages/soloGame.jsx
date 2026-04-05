@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { startGameAPI, makeGuessAPI } from "../services/api";
-import GuessInput from "../components/GuessInput.jsx";
-import StatsModal from "../components/StatsModal.jsx";
+import GuessInput from "../components/guessInput.jsx";
+import StatsModal from "../components/statsModal.jsx";
 import { useNavigate } from "react-router-dom";
 import { revealAnswerAPI } from "../services/api";
 import GlobeComponent from "../components/globe.jsx";
