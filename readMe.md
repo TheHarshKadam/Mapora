@@ -24,12 +24,12 @@ Mapora is an interactive geography game where players guess a hidden country bas
 ---
 
 ### 🎮 Gameplay
-<img width="700" height="900" alt="image" src="https://github.com/user-attachments/assets/b2f93f60-d92a-49ea-b6cd-bc8fc9262fb4" />
+<img width="1050" height="720" alt="image" src="https://github.com/user-attachments/assets/b2f93f60-d92a-49ea-b6cd-bc8fc9262fb4" />
 
 ---
 
 ### 🏆 Result Screen
-<img width="500" height="800" alt="image" src="https://github.com/user-attachments/assets/d1e1a2c7-2fa4-4ead-95e2-075fcc618cd3" />
+<img width="1050" height="1050" alt="image" src="https://github.com/user-attachments/assets/d1e1a2c7-2fa4-4ead-95e2-075fcc618cd3" />
 
 ---
 
